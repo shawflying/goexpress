@@ -21,6 +21,15 @@
 3. postform
 4. put
 
+## 熟悉使用golang 模块
+
+
+## net/http
+Golang在搭建web服务器方面的能力是毋庸置疑的。官方已经有提供net/http包为搭建http服务器做准备。使用这个包能很简单地对web的路由，静态文件，模版，cookie等数据进行设置。
+
+
+## 
+
 
 ## 访问
 
