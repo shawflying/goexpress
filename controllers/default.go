@@ -22,7 +22,10 @@ func (this *loginController) IndexAction(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		fmt.Println(err)
 	}
-	t.Execute(w, nil)
+	ResParams := make(map[string]interface{})
+	ResParams["email"] = "yanxxit@gmail.com"
+	ResParams["mobile"] = "15806111230"
+	t.Execute(w, ResParams)
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -105,8 +108,7 @@ func GetInfo(res http.ResponseWriter, req *http.Request) {
 }
 
 func PostInfo(res http.ResponseWriter, req *http.Request) {
-	var PayParams map[string]interface{}
-	PayParams = make(map[string]interface{})
+	PayParams := make(map[string]interface{})
 	PayParams["money"] = "5"
 	PayParams["number"] = "15806111230"
 	PayParams["openid"] = "oKXUCj1MOddnp-sCpGi1J1dg3TyM"
