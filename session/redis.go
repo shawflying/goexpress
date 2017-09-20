@@ -26,7 +26,11 @@ func createClient() *redis.Client {
 	return client
 }
 
-var client = createClient()
+var client *redis.Client
+
+func init() {
+	client = createClient()
+}
 
 //获取缓存信息
 func GetRedisCache(SessionId, key string) interface{} {
