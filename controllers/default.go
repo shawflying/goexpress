@@ -2,12 +2,12 @@ package controllers
 
 import (
 	"fmt"
-	"net/http"
-	"strings"
-	"goexpress/request"
 	"github.com/shawflying/beego-common-utils/utils/comutil"
-	"reflect"
+	"goexpress/request"
 	"html/template"
+	"net/http"
+	"reflect"
+	"strings"
 )
 
 func init() {
@@ -19,7 +19,7 @@ type loginController struct {
 
 func (this *loginController) IndexAction(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("view/index.html")
-	if (err != nil) {
+	if err != nil {
 		fmt.Println(err)
 	}
 	t.Execute(w, nil)
@@ -95,7 +95,25 @@ func Encode(res http.ResponseWriter, req *http.Request) {
 
 // 接口请求 get post ...
 func GetInfo(res http.ResponseWriter, req *http.Request) {
-	body, err := request.Get("http://m.sh.189.cn/service/node/crypto?data=abc123&key=express&type=0")
+	body, err := request.Get("http://httpbin.org/get")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Fprintf(res, comutil.TransInterfaceToString(body))
+}
+
+func PostInfo(res http.ResponseWriter, req *http.Request) {
+	var PayParams map[string]interface{}
+	PayParams = make(map[string]interface{})
+	PayParams["money"] = "5"
+	PayParams["number"] = "15806111230"
+	PayParams["openid"] = "oKXUCj1MOddnp-sCpGi1J1dg3TyM"
+	PayParams["from"] = "disney"
+	PayParams["channel"] = "0"
+	PayParams["note"] = "迪士尼活动"
+	body, err := request.Post("http://httpbin.org/post", PayParams)
 
 	if err != nil {
 		fmt.Println(err)

@@ -16,6 +16,7 @@ func main() {
 	http.HandleFunc("/say", controllers.SayhelloName) //设置访问的路由
 	http.HandleFunc("/encode", controllers.Encode)    //code
 	http.HandleFunc("/getInfo", controllers.GetInfo)  //code
+	http.HandleFunc("/postInfo", controllers.PostInfo)  //code
 
 	http.HandleFunc("/p/index", controllers.Home) //进入首页
 
