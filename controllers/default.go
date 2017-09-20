@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/shawflying/beego-common-utils/utils/comutil"
 	"goexpress/request"
+	"goexpress/session"
 	"html/template"
 	"net/http"
 	"reflect"
@@ -36,6 +37,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	if len(parts) > 1 {
 		action = strings.Title(parts[1]) + "Action"
 	}
+
+	// 存入cookie,使用cookie存储
+	session.SessionId = "17721021494"
+	fmt.Println("获取session中的值：", session.GetSession("name"))
 
 	login := &loginController{}
 	controller := reflect.ValueOf(login)
