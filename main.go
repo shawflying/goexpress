@@ -22,7 +22,7 @@ func main() {
 	http.HandleFunc("/p/index", controllers.Home) //进入首页
 
 	fmt.Println("http://127.0.0.1:8600/")
-	err := http.ListenAndServe(":8600", nil)
+	err := http.ListenAndServe(":8600", controllers.Home)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

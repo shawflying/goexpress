@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"encoding/base64"
 	"fmt"
 	"github.com/shawflying/beego-common-utils/utils/comutil"
 	"goexpress/request"
@@ -9,6 +10,7 @@ import (
 	"net/http"
 	"reflect"
 	"strings"
+	"time"
 )
 
 func init() {
@@ -36,11 +38,11 @@ func Middle(w http.ResponseWriter, r *http.Request) {
 func Home(w http.ResponseWriter, r *http.Request) {
 	//var COOKIE_MAX_MAX_AGE = time.Hour // 单位：秒。
 	//var maxAge = int(COOKIE_MAX_MAX_AGE)
-	var uid = "10"
+	var uid = time.Now().Format("2017-09-21 12:12:12")
 
 	var uid_cookie = &http.Cookie{
 		Name:     "uid",
-		Value:    uid,
+		Value:    base64.URLEncoding.EncodeToString([]byte(uid)),
 		Path:     "/",
 		HttpOnly: false,
 		MaxAge:   6,
@@ -48,13 +50,14 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 	http.SetCookie(w, uid_cookie) //设置cookie
 
-	cookie, err := r.Cookie("_gscu_1656351689") //可以获取cookie值
+	cookie, err := r.Cookie("uid") //可以获取cookie值
 
-	if err != nil || cookie.Value == "" {
+	fmt.Println("cookie:", r.Cookies())
+	if err == nil && cookie.Value != "" {
 		//http.Redirect(w, r, "/login/index", http.StatusFound)
+		fmt.Println("cookie:", cookie)
+		fmt.Println("cookie:", cookie.Value)
 	}
-
-	fmt.Println("cookie:", cookie)
 
 	fmt.Println("进入首页")
 	pathInfo := strings.Trim(r.URL.Path, "/")
