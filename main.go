@@ -5,6 +5,7 @@ import (
 	"goexpress/controllers"
 	"log"
 	"net/http"
+	_ "net/http/pprof"
 )
 
 func main() {
