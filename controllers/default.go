@@ -29,7 +29,33 @@ func (this *loginController) IndexAction(w http.ResponseWriter, r *http.Request)
 	t.Execute(w, ResParams)
 }
 
+func Middle(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("进入中间件")
+}
+
 func Home(w http.ResponseWriter, r *http.Request) {
+	//var COOKIE_MAX_MAX_AGE = time.Hour // 单位：秒。
+	//var maxAge = int(COOKIE_MAX_MAX_AGE)
+	var uid = "10"
+
+	var uid_cookie = &http.Cookie{
+		Name:     "uid",
+		Value:    uid,
+		Path:     "/",
+		HttpOnly: false,
+		MaxAge:   6,
+	}
+
+	http.SetCookie(w, uid_cookie) //设置cookie
+
+	cookie, err := r.Cookie("_gscu_1656351689") //可以获取cookie值
+
+	if err != nil || cookie.Value == "" {
+		//http.Redirect(w, r, "/login/index", http.StatusFound)
+	}
+
+	fmt.Println("cookie:", cookie)
+
 	fmt.Println("进入首页")
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")

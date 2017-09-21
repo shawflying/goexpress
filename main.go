@@ -13,10 +13,10 @@ func main() {
 	http.Handle("/js/", http.FileServer(http.Dir("static")))
 	http.Handle("/css/", http.FileServer(http.Dir("static")))
 
-	http.HandleFunc("/say", controllers.SayhelloName) //设置访问的路由
-	http.HandleFunc("/encode", controllers.Encode)    //code
-	http.HandleFunc("/getInfo", controllers.GetInfo)  //code
-	http.HandleFunc("/postInfo", controllers.PostInfo)  //code
+	http.HandleFunc("/say", controllers.SayhelloName)  //设置访问的路由
+	http.HandleFunc("/encode", controllers.Encode)     //code
+	http.HandleFunc("/getInfo", controllers.GetInfo)   //code
+	http.HandleFunc("/postInfo", controllers.PostInfo) //code
 
 	http.HandleFunc("/p/index", controllers.Home) //进入首页
 
