@@ -8,6 +8,14 @@ import (
 	_ "net/http/pprof"
 )
 
+type customHandler struct {
+}
+
+func (cb *customHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("customHandler!!")
+	w.Write([]byte("customHandler!!"))
+}
+
 func main() {
 
 	http.Handle("/img/", http.FileServer(http.Dir("static")))
@@ -22,7 +30,7 @@ func main() {
 	http.HandleFunc("/p/index", controllers.Home) //进入首页
 
 	fmt.Println("http://127.0.0.1:8600/")
-	err := http.ListenAndServe(":8600", controllers.Home)
+	err := http.ListenAndServe(":8600", nil) //&customHandler{}
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
