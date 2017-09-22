@@ -35,6 +35,21 @@ func Middle(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("进入中间件")
 }
 
+func Login(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("view/login.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+	ResParams := make(map[string]interface{})
+	ResParams["email"] = "yanxxit@gmail.com"
+	ResParams["mobile"] = "15806111230"
+	t.Execute(w, ResParams)
+}
+
+func Admin(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func Home(w http.ResponseWriter, r *http.Request) {
 	//var COOKIE_MAX_MAX_AGE = time.Hour // 单位：秒。
 	//var maxAge = int(COOKIE_MAX_MAX_AGE)

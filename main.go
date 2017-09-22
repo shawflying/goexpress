@@ -37,7 +37,12 @@ func main() {
 	http.HandleFunc("/encode", controllers.Encode)     //code
 	http.HandleFunc("/getInfo", controllers.GetInfo)   //code
 	http.HandleFunc("/postInfo", controllers.PostInfo) //code
-	http.HandleFunc("/p/index", controllers.Home)      //进入首页
+
+	http.HandleFunc("/p/index", controllers.Home) //进入首页
+	http.HandleFunc("/p/login", controllers.Login) //进入首页
+	http.HandleFunc("/p/admin", controllers.Admin) //进入首页
+
+	http.HandleFunc("/d/login", controllers.Home) //进入首页
 
 	HomeHandle := http.HandlerFunc(final)               //中间处理
 	http.Handle("/mid", middlewaresHandler(HomeHandle)) //中间件中间包裹一层方法

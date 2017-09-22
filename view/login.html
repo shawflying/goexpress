@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+
+    <title>login</title>
+    <style>
+        html, body, .content {
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .login {
+            margin-top: 10%;
+            background-color: antiquewhite;
+            line-height: 30px;
+        }
+        .login h2{
+            line-height: 40px;
+            text-align: center;
+        }
+        .login input{
+            width: 90%;
+            margin-left: 5%;
+        }
+        .login button{
+            width: 60%;
+            margin-left: 15%;
+        }
+    </style>
+
+</head>
+<body>
+<div class="content">
+    <div class="login">
+        <h2>用户登录</h2>
+        <div>
+            <input type="text" class="login-username" value="{{ .email}}" placeholder="输入邮箱用户名">
+            <input type="password" class="login-pwd" value="{{ .mobile}}" placeholder="密码">
+            <button>登录</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
