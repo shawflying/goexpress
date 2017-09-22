@@ -39,8 +39,8 @@ func main() {
 	http.HandleFunc("/postInfo", controllers.PostInfo) //code
 	http.HandleFunc("/p/index", controllers.Home)      //进入首页
 
-	HomeHandle := http.HandlerFunc(final) //中间处理
-	http.Handle("/mid", middlewaresHandler(HomeHandle))
+	HomeHandle := http.HandlerFunc(final)               //中间处理
+	http.Handle("/mid", middlewaresHandler(HomeHandle)) //中间件中间包裹一层方法
 
 	fmt.Println("http://127.0.0.1:8600/")
 	err := http.ListenAndServe(":8600", nil) //&customHandler{}
